@@ -13,7 +13,7 @@
         return;
       }
 
-      // חיבור לבלוטות' (ניסיון בלבד, תלוי בדפדפן)
+      // חיבור לבלוטות' רק אחרי לחיצה (אם תרצה, תוסיף כפתור בעתיד)
       if (navigator.bluetooth) {
         try {
           const device = await navigator.bluetooth.requestDevice({
@@ -25,9 +25,8 @@
         }
       }
 
-      // פתיחת YouTube Music עם פלייליסט ספציפי
-      const playlistURL = "https://music.youtube.com/playlist?list=PL_kqfj6Q9O9NX-KT6Ewl8jnePcvlGL7i8&si=H8K1mcfSUss-EM-u"; // החלף לפלייליסט שלך
-      window.location.href = playlistURL;
+      // הפניה ישירה לאפליקציית YouTube Music עם הפלייליסט
+      window.location.href = "intent://music.youtube.com/playlist?list=PL_kqfj6Q9O9NX-KT6Ewl8jnePcvlGL7i8#Intent;package=com.google.android.apps.youtube.music;scheme=https;end;";
     }
   </script>
 </head>
