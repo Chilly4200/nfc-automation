@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מצב רכב - YouTube Music</title>
+  <script>
+    async function startAutomation() {
+      const ua = navigator.userAgent.toLowerCase();
+
+      if (!ua.includes("android")) {
+        alert("הקוד תומך באנדרואיד בלבד.");
+        return;
+      }
+
+      // חיבור לבלוטות' (ניסיון בלבד, תלוי בדפדפן)
+      if (navigator.bluetooth) {
+        try {
+          const device = await navigator.bluetooth.requestDevice({
+            filters: [{ name: "Noy Yakir" }]
+          });
+          await device.gatt.connect();
+        } catch (e) {
+          console.warn("חיבור בלוטות' נכשל או בוטל");
+        }
+      }
+
+      // פתיחת YouTube Music עם פלייליסט ספציפי
+      const playlistURL = "https://music.youtube.com/playlist?list=PL_kqfj6Q9O9NX-KT6Ewl8jnePcvlGL7i8&si=H8K1mcfSUss-EM-u"; // החלף לפלייליסט שלך
+      window.location.href = playlistURL;
+    }
+  </script>
+</head>
+<body onload="startAutomation()">
+  <h1>🎵 מתחבר לנגן ופותח פלייליסט...</h1>
+</body>
+</html>
